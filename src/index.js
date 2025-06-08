@@ -3,23 +3,15 @@ import dataset from "./car-dataset.json";
 
 //we create a dropdown and populate the dropdowns with the data.
 
-const selectMake = document.createElement("select");
-const selectYear = document.createElement("select");
-const selectModel = document.createElement("select");
+const selectMake = document.querySelector("#makeSelect");
+const selectYear = document.querySelector("#yearSelect");
+const selectModel = document.querySelector("#modelSelect");
+
 const section = document.querySelector("section");
 
 //year make and model options
 
-const initSelections = (selector) => {
-  let optionSelect = document.createElement("option");
-  optionSelect.value = "select";
-  optionSelect.text = "select";
-  selector.appendChild(optionSelect);
-};
-
 const yearSet = new Set();
-
-//make set and model set are dependent on year.
 const makeSet = new Set();
 const modelSet = new Set();
 
@@ -128,26 +120,28 @@ function makeHandler(e) {
   optionsPopulate(modelSet, selectModel);
 }
 
-function modelHandler(e){
+function modelHandler(e) {
   let finalYear = selectYear.value;
   let finalMake = selectMake.value;
   let finalModel = selectModel.value;
 
   //filter by those attributes
   let finalResult = dataset.find((item) => {
-    return item.year == finalYear && item.Manufacturer == finalMake && item.model == finalModel;
+    return (
+      item.year == finalYear &&
+      item.Manufacturer == finalMake &&
+      item.model == finalModel
+    );
   });
 
   console.log(finalResult);
 }
 
-function clearOptions(set, selector){
+function clearOptions(set, selector) {
   set.clear();
   //quick way to remove all children from the dropdown, thank you internet.
   selector.innerHTML = "";
 }
-
-
 
 (() => {
   populateSets();
@@ -160,8 +154,6 @@ function clearOptions(set, selector){
 
   // optionsPopulate(makeSet, selectMake);
   // optionsPopulate(modelSet, selectModel);
-  initSelections(selectModel);
-  //initSelections(selectMake);
   section.appendChild(selectYear);
   section.appendChild(selectMake);
   section.appendChild(selectModel);

@@ -4,9 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <h1>Hello World, This is a test</h1>
-    <section></section>
+    <article>
+      <h2>Find a car</h2>
+      <h4>Find the perfect vehicle to match your tastes.</h4>
+      <section>
+        <div>
+          <label for="year">Year</label>
+          <select id="yearSelect" name="year">
+            <option value="" disabled selected>Select a year</option>
+          </select>
+        </div>
+        <div>
+          <label for="make">Make</label>
+          <select id="makeSelect" name="make">
+            <option value="" disabled selected>Select a make</option>
+          </select>
+        </div>
+        <div>
+          <label for="model">Model</label>
+          <select id="modelSelect" name="model">
+            <option value="" disabled selected>Select a model</option>
+          </select>
+        </div>
+      </section>
+    </article>
   </body>
 </html>
