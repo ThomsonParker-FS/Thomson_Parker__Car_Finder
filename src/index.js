@@ -7,8 +7,6 @@ const selectMake = document.querySelector("#makeSelect");
 const selectYear = document.querySelector("#yearSelect");
 const selectModel = document.querySelector("#modelSelect");
 
-const section = document.querySelector("section");
-
 //year make and model options
 
 const yearSet = new Set();
@@ -89,10 +87,13 @@ selectModel.addEventListener("change", modelHandler);
  * @param {event} event
  */
 function yearHandler(e) {
+  selectMake.removeAttribute("disabled");
+  selectMake.parentElement.removeAttribute("class", "disabled");
+  selectModel.setAttribute("disabled", true);
+  selectModel.parentElement.setAttribute("class", "disabled");
   //clear the models when this changes
   clearOptions(modelSet, selectModel);
   clearOptions(makeSet, selectMake);
-
   let yearRaw = filterByYear(selectYear.value);
 
   yearRaw.forEach((item) => {
@@ -109,6 +110,8 @@ function yearHandler(e) {
  * @returns
  */
 function makeHandler(e) {
+  selectModel.removeAttribute("disabled");
+  selectModel.parentElement.removeAttribute("class", "disabled");
   //clear the models when this changes
   clearOptions(modelSet, selectModel);
 
@@ -149,12 +152,13 @@ function clearOptions(set, selector) {
   // sortSet(modelSet, -1);
   // sortSet(makeSet, -1);
   optionsPopulate(yearSet, selectYear);
+  selectMake.setAttribute("disabled", true);
+  selectMake.parentElement.setAttribute("class", "disabled");
+  selectModel.setAttribute("disabled", true);
+  selectModel.parentElement.setAttribute("class", "disabled");
 
   //after this we sort by year, then make and then model.
 
   // optionsPopulate(makeSet, selectMake);
   // optionsPopulate(modelSet, selectModel);
-  section.appendChild(selectYear);
-  section.appendChild(selectMake);
-  section.appendChild(selectModel);
 })();
