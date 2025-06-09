@@ -57,6 +57,13 @@ const sortSet = (set, order) => {
 };
 
 const optionsPopulate = (set, selector) => {
+  let defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.disabled = true;
+  defaultOption.selected = true;
+  defaultOption.text = "Select an option";
+  selector.appendChild(defaultOption);
+
   set.forEach((item) => {
     let option = document.createElement("option");
     option.value = item;
@@ -88,6 +95,8 @@ function yearHandler(e) {
     makeSet.add(item.Manufacturer);
   });
 
+  makeSet.size == 1 ? selectMake.addEventListener("click", makeHandler) : null;
+
   sortSet(makeSet, -1);
   optionsPopulate(makeSet, selectMake);
 }
@@ -107,6 +116,11 @@ function makeHandler(e) {
   makeRaw.forEach((item) => {
     modelSet.add(item.model);
   });
+
+  modelSet.size == 1
+    ? selectModel.addEventListener("click", modelHandler)
+    : null;
+
   sortSet(modelSet, -1);
   optionsPopulate(modelSet, selectModel);
 }
