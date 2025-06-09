@@ -74,7 +74,6 @@ const optionsPopulate = (set, selector) => {
 
 selectYear.addEventListener("change", yearHandler);
 selectMake.addEventListener("change", makeHandler);
-selectMake.addEventListener("click", makeHandler);
 selectModel.addEventListener("change", modelHandler);
 
 /**Handles when year is selected and or changed
