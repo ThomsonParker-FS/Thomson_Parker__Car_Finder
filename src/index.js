@@ -32,9 +32,9 @@ const filterByYear = (year) => {
   });
 };
 
-const filterByMake = (make) => {
+const filterByMake = (make, year) => {
   return dataset.filter((i) => {
-    return i.Manufacturer == make;
+    return i.Manufacturer == make && i.year == year;
   });
 };
 
@@ -67,6 +67,7 @@ const optionsPopulate = (set, selector) => {
 
 selectYear.addEventListener("change", yearHandler);
 selectMake.addEventListener("change", makeHandler);
+selectMake.addEventListener("click", makeHandler);
 selectModel.addEventListener("change", modelHandler);
 
 /**Handles when year is selected and or changed
@@ -102,7 +103,7 @@ function makeHandler(e) {
   //clear the models when this changes
   clearOptions(modelSet, selectModel);
 
-  let makeRaw = filterByMake(selectMake.value);
+  let makeRaw = filterByMake(selectMake.value, selectYear.value);
   makeRaw.forEach((item) => {
     modelSet.add(item.model);
   });
@@ -134,6 +135,8 @@ function clearOptions(set, selector) {
 }
 
 (() => {
+  console.log(dataset.filter((i) => i.year == 2024));
+
   populateSets();
   sortSet(yearSet, 1);
   optionsPopulate(yearSet, selectYear);
