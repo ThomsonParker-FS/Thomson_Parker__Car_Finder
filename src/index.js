@@ -1,8 +1,6 @@
 import "./styles/index.scss";
 import dataset from "./car-dataset.json";
 
-//we create a dropdown and populate the dropdowns with the data.
-
 const selectMake = document.querySelector("#makeSelect");
 const selectYear = document.querySelector("#yearSelect");
 const selectModel = document.querySelector("#modelSelect");
@@ -12,9 +10,6 @@ const selectModel = document.querySelector("#modelSelect");
 const yearSet = new Set();
 const makeSet = new Set();
 const modelSet = new Set();
-
-//when year is selected, create make set from all values of year
-//when make set is selected, create all models from make.
 
 //create sets for the data for the dropdowns.
 
@@ -43,8 +38,6 @@ const filterByMake = (make) => {
   });
 };
 
-//initial state is blank
-
 //in order to sort you need to populate an array, sort the array, and put it back in the set.
 
 const sortSet = (set, order) => {
@@ -62,12 +55,6 @@ const sortSet = (set, order) => {
     set.add(item);
   });
 };
-
-//how do we get the input from the dropdowns.
-
-//create the dropdowns, 3 of them, with options.
-
-//had to find out how to iterate through sets.
 
 const optionsPopulate = (set, selector) => {
   set.forEach((item) => {
@@ -149,16 +136,9 @@ function clearOptions(set, selector) {
 (() => {
   populateSets();
   sortSet(yearSet, 1);
-  // sortSet(modelSet, -1);
-  // sortSet(makeSet, -1);
   optionsPopulate(yearSet, selectYear);
   selectMake.setAttribute("disabled", true);
   selectMake.parentElement.setAttribute("class", "disabled");
   selectModel.setAttribute("disabled", true);
   selectModel.parentElement.setAttribute("class", "disabled");
-
-  //after this we sort by year, then make and then model.
-
-  // optionsPopulate(makeSet, selectMake);
-  // optionsPopulate(modelSet, selectModel);
 })();
